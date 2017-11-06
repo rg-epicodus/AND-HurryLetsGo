@@ -30,7 +30,8 @@
         <activity android:name=".ui.FindFoodActivity" />
         <activity android:name=".ui.FindEntertainmentActivity" />
         <activity android:name=".ui.SavedPlaceListActivity" />
-        <activity android:name=".ui.PlaceListActivity"></activity>
+        <activity android:name=".ui.PlaceListActivity" />
+        <activity android:name=".ui.PlaceDetailActivity"></activity>
     </application>
 
 </manifest>

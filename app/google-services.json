@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "117250266608",
+    "firebase_url": "https://hurryletsgo-9d537.firebaseio.com",
+    "project_id": "hurryletsgo-9d537",
+    "storage_bucket": "hurryletsgo-9d537.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117250266608:android:99388ca8c9cf2a32",
+        "android_client_info": {
+          "package_name": "com.epicodus.hurryletsgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117250266608-ph90cm5pi5dieqgd17t9pfartv0mrbeg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.hurryletsgo",
+            "certificate_hash": "067c1e5ae6d8b50d77d73920bbf90cea3d90e68d"
+          }
+        },
+        {
+          "client_id": "117250266608-v1lj6bp44adqn8qhq14gt3i56fdssfqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4r8rAC9wFNR3ISeh6WYIz4TOYHiNOlYg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117250266608-v1lj6bp44adqn8qhq14gt3i56fdssfqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
