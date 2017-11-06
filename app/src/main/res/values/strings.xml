@@ -4,6 +4,7 @@
     <string name="find_entertainment">Find Entertainment</string>
     <string name="find_food">Find Food</string>
     <string name="saved_places">Saved Places</string>
-    <string name="greeting">HurryLetsGo</string>
+    <string name="greeting">Hurry Lets Go</string>
+    <string name="greetingSubText">an app to help people with no time find something to do right now</string>
 
 </resources>
