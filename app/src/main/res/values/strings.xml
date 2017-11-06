@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">HurryLetsGo</string>
+    <string name="find_drinks">Find Drinks</string>
+    <string name="find_entertainment">Find Entertainment</string>
+    <string name="find_food">Find Food</string>
+    <string name="saved_places">Saved Places</string>
+    <string name="greeting">HurryLetsGo</string>
+
 </resources>

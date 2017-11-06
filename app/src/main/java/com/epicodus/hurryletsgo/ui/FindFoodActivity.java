@@ -1,13 +1,15 @@
-package com.epicodus.hurryletsgo;
+package com.epicodus.hurryletsgo.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.epicodus.hurryletsgo.R;
+
+public class FindFoodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_find_food);
     }
 }
