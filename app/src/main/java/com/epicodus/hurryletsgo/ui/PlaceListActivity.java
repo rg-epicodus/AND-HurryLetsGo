@@ -11,13 +11,12 @@ import com.epicodus.hurryletsgo.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SavedPlaceListActivity extends AppCompatActivity {
+public class PlaceListActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_saved_place_list);
-
+        setContentView(R.layout.activity_place_list);
     }
-
 }

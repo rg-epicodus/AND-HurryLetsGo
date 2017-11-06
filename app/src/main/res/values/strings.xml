@@ -5,6 +5,13 @@
     <string name="find_food">Find Food</string>
     <string name="saved_places">Saved Places</string>
     <string name="greeting">Hurry Lets Go</string>
+    <string name="greetingDrinks">Find Drinks Activity</string>
+    <string name="greetingFood">Find Food Activity</string>
+    <string name="greetingEntertainment">Find Entertainment Activity</string>
+    <string name="greetingSavedPlaces">Saved Places Activity</string>
+    <string name="greetingPlaceList">Place List Activity</string>
     <string name="greetingSubText">an app to help people with no time find something to do right now</string>
+    <string name="submit">Submit</string>
+
 
 </resources>

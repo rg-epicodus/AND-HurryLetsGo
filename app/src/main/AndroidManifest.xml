@@ -22,13 +22,15 @@
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.FindDrinksActivity" />
         <activity android:name=".ui.FindFoodActivity" />
         <activity android:name=".ui.FindEntertainmentActivity" />
-        <activity android:name=".ui.SavedPlaceListActivity"></activity>
+        <activity android:name=".ui.SavedPlaceListActivity" />
+        <activity android:name=".ui.PlaceListActivity"></activity>
     </application>
 
 </manifest>
