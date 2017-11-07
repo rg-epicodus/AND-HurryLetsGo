@@ -1,5 +1,7 @@
 package com.epicodus.hurryletsgo.services;
 
+import android.util.Log;
+
 import com.epicodus.hurryletsgo.Constants;
 import com.epicodus.hurryletsgo.models.Place;
 
@@ -22,6 +24,7 @@ import okhttp3.Response;
  */
 
 public class APIService {
+    public static final String TAG = APIService.class.getSimpleName();
 
     public static void findFood(String location, Callback callback) {
 
@@ -50,11 +53,11 @@ public class APIService {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YELP_DRINK_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.YELP_LOCATION_QUERY_PARAMETER, location);
         String url = urlBuilder.build().toString();
-
         Request request= new Request.Builder()
                 .url(url)
                 .header("Authorization", Constants.YELP_TOKEN)
                 .build();
+        Log.d(TAG, "findDrink: " + request);
 
         Call call = client.newCall(request);
         call.enqueue(callback);
@@ -94,7 +97,7 @@ public class APIService {
                 String phone = placeJSON.optString("display_phone", "Phone not available");
                 String website = placeJSON.getString("url");
                 double rating = placeJSON.getDouble("rating");
-                String imageUrl = placeJSON.getString("image_url");
+                String imageUrl = placeJSON.optString("image_url");
                 double latitude = (double) placeJSON.getJSONObject("coordinates").getDouble("latitude");
                 double longitude = (double) placeJSON.getJSONObject("coordinates").getDouble("longitude");
                 ArrayList<String> address = new ArrayList<>();

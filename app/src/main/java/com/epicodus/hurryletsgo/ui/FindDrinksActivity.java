@@ -100,7 +100,7 @@ public class FindDrinksActivity extends AppCompatActivity{
     private void getPlaces(String location) {
         final APIService apiService = new APIService();
 
-        apiService.findFood(location, new Callback() {
+        apiService.findDrink(location, new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
