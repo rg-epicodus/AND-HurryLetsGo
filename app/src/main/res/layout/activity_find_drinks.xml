@@ -1,47 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.epicodus.hurryletsgo.ui.FindDrinksActivity">
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".ui.PlaceListActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/greetingDrinks"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/appNameTextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintVertical_bias="0.032" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"/>
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/submit"
-        android:id="@+id/submitButton"
-        android:background="@color/primary"
-        android:textColor="@color/colorTextIcons"
-        android:visibility="visible"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="200dp"
-        tools:ignore="RtlHardcoded" />
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

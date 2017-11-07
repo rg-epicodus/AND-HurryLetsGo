@@ -18,9 +18,11 @@ import android.widget.Button;
 import com.epicodus.hurryletsgo.Constants;
 import com.epicodus.hurryletsgo.R;
 import com.epicodus.hurryletsgo.adapters.PlaceListAdapter;
+import com.epicodus.hurryletsgo.models.Place;
 import com.epicodus.hurryletsgo.services.APIService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,6 +34,12 @@ public class FindDrinksActivity extends AppCompatActivity{
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentAddress;
+
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+
+    private PlaceListAdapter mAdapter;
+    public ArrayList<Place> mPlaces = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,14 +128,4 @@ public class FindDrinksActivity extends AppCompatActivity{
     private void addToSharedPreferences(String location) {
         mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
     }
-//    @Override
-//    public void onClick(View v) {
-//
-//        if(v == mSubmitButton) {
-//            Intent intent = new Intent(FindDrinksActivity.this, PlaceListActivity.class);
-//            startActivity(intent);
-//        }
-//
-//    }
-
 }
