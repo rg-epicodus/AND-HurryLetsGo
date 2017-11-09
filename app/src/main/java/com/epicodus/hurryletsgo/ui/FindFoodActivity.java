@@ -20,6 +20,7 @@ import com.epicodus.hurryletsgo.R;
 import com.epicodus.hurryletsgo.adapters.PlaceListAdapter;
 import com.epicodus.hurryletsgo.models.Place;
 import com.epicodus.hurryletsgo.services.APIService;
+import com.epicodus.hurryletsgo.util.OnPlaceSelectedListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class FindFoodActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentAddress;
+    private OnPlaceSelectedListener mOnPlaceSelectedListener;
+
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -114,7 +117,7 @@ public class FindFoodActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        mAdapter = new PlaceListAdapter(getApplicationContext(), mPlaces);
+                        mAdapter = new PlaceListAdapter(getApplicationContext(), mPlaces, mOnPlaceSelectedListener);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(FindFoodActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);

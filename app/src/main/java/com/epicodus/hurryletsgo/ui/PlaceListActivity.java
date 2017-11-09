@@ -2,6 +2,7 @@ package com.epicodus.hurryletsgo.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,8 @@ import com.epicodus.hurryletsgo.adapters.PlaceListAdapter;
 import com.epicodus.hurryletsgo.models.Place;
 import com.epicodus.hurryletsgo.services.APIService;
 
+import org.parceler.Parcels;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -31,19 +34,37 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class PlaceListActivity extends AppCompatActivity {
+    private Integer mPosition;
+    ArrayList<Place> mPlaces;
+    String mSource;
 
-    @Bind(R.id.recyclerView)
-    RecyclerView mRecyclerView;
-
+//    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private PlaceListAdapter mAdapter;
-    public ArrayList<Place> mPlaces = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
 
+        if (savedInstanceState != null) {
+
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                mPosition = savedInstanceState.getInt(Constants.EXTRA_KEY_POSITION);
+                mPlaces = Parcels.unwrap(savedInstanceState.getParcelable(Constants.EXTRA_KEY_PLACE));
+                mSource = savedInstanceState.getString(Constants.KEY_SOURCE);
+
+                if (mPosition != null && mPlaces != null) {
+                    Intent intent = new Intent(this, PlaceDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition);
+                    intent.putExtra(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
+                    intent.putExtra(Constants.KEY_SOURCE, mSource);
+                    startActivity(intent);
+                }
+
+            }
+
+        }
 
     }
 

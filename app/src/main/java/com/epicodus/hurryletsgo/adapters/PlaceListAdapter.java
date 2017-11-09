@@ -2,6 +2,9 @@ package com.epicodus.hurryletsgo.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.epicodus.hurryletsgo.Constants;
 import com.epicodus.hurryletsgo.R;
 import com.epicodus.hurryletsgo.models.Place;
 import com.epicodus.hurryletsgo.ui.PlaceDetailActivity;
+import com.epicodus.hurryletsgo.ui.PlaceDetailFragment;
+import com.epicodus.hurryletsgo.util.OnPlaceSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -31,16 +37,18 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
 
     private ArrayList<Place> mPlaces = new ArrayList<>();
     private Context mContext;
+    private OnPlaceSelectedListener mOnPlaceSelectedListener;
 
-    public PlaceListAdapter(Context context, ArrayList<Place> places) {
+    public PlaceListAdapter(Context context, ArrayList<Place> places, OnPlaceSelectedListener placeSelectedListener) {
         mContext = context;
         mPlaces = places;
+        mOnPlaceSelectedListener = placeSelectedListener;
     }
 
     @Override
     public PlaceListAdapter.PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.place_list_item, parent, false);
-        PlaceViewHolder viewHolder = new PlaceViewHolder(view);
+        PlaceViewHolder viewHolder = new PlaceViewHolder(view, mPlaces, mOnPlaceSelectedListener);
         return viewHolder;
     }
 
@@ -62,13 +70,28 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
         @Bind(R.id.ratingTextView) TextView mRatingTextView;
 
         private Context mContext;
+        private int mOrientation;
+        private ArrayList<Place> mPlaces = new ArrayList<>();
+        private OnPlaceSelectedListener mPlaceSelectedListener;
 
-        public PlaceViewHolder(View itemView) {
+        public PlaceViewHolder(View itemView, ArrayList<Place> places, OnPlaceSelectedListener placeSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
             mContext = itemView.getContext();
+            mOrientation = itemView.getResources().getConfiguration().orientation;
+            mPlaces = places;
+            mPlaceSelectedListener = placeSelectedListener;
+
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
+                createDetailFragment(0);
+            }
             itemView.setOnClickListener(this);
+
+            mOrientation = itemView.getResources().getConfiguration().orientation;
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(0);
+            }
         }
 
         public void bindPlace(Place place) {
@@ -87,12 +110,24 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-
+            mPlaceSelectedListener.onPlaceSelected(itemPosition, mPlaces, Constants.SOURCE_FIND);
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(itemPosition);
+        } else {
             Intent intent = new Intent(mContext, PlaceDetailActivity.class);
-            intent.putExtra("position", itemPosition + "");
-            intent.putExtra("places", Parcels.wrap(mPlaces));
-
+            intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+            intent.putExtra(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
+            intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
             mContext.startActivity(intent);
         }
     }
+        private void createDetailFragment(int position) {
+            PlaceDetailFragment detailFragment = PlaceDetailFragment.newInstance(mPlaces, position, Constants.SOURCE_FIND);
+            FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.placeDetailContainer, detailFragment);
+            ft.commit();
+        }
+
+    }
+
 }

@@ -64,9 +64,10 @@ public class PlaceDetailFragment extends Fragment implements View.OnClickListene
         PlaceDetailFragment placeDetailFragment = new PlaceDetailFragment();
         Bundle args = new Bundle();
 
-        args.putParcelable("place", Parcels.wrap(places));
+        args.putParcelable(Constants.EXTRA_KEY_PLACE, Parcels.wrap(places));
         args.putInt(Constants.EXTRA_KEY_POSITION, position);
         args.putString(Constants.KEY_SOURCE, source);
+
         placeDetailFragment.setArguments(args);
         return placeDetailFragment;
     }
@@ -85,12 +86,6 @@ public class PlaceDetailFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_place_detail, container, false);
         ButterKnife.bind(this, view);
 
-        if (mSource.equals(Constants.SOURCE_SAVED)) {
-            mSavePlaceButton.setVisibility(View.GONE);
-        } else {
-            mSavePlaceButton.setOnClickListener(this);
-        }
-
         if (!mPlace.getImageUrl().contains("http")) {
             try {
                 Bitmap image = decodeFromFirebaseBase64(mPlace.getImageUrl());
@@ -105,6 +100,13 @@ public class PlaceDetailFragment extends Fragment implements View.OnClickListene
                     .centerCrop()
                     .into(mImageLabel);
         }
+
+        if (mSource.equals(Constants.SOURCE_SAVED)) {
+            mSavePlaceButton.setVisibility(View.GONE);
+        } else {
+            mSavePlaceButton.setOnClickListener(this);
+        }
+
 
         mNameLabel.setText(mPlace.getName());
         mCategoriesLabel.setText(android.text.TextUtils.join(", ", mPlace.getCategories()));
@@ -121,41 +123,9 @@ public class PlaceDetailFragment extends Fragment implements View.OnClickListene
         return view;
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v == mWebsiteLabel) {
-            Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(mPlace.getWebsite()));
-            startActivity(webIntent);
-        }
-        if (v == mPhoneLabel) {
-            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
-                    Uri.parse("tel:" + mPlace.getPhone()));
-            startActivity(phoneIntent);
-        }
-        if (v == mAddressLabel) {
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("geo:" + mPlace.getLatitude()
-                            + "," + mPlace.getLongitude()
-                            + "?q=(" + mPlace.getName() + ")"));
-            startActivity(mapIntent);
-        }
-        if (v == mSavePlaceButton) {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = user.getUid();
-
-            DatabaseReference placeRef = FirebaseDatabase
-                    .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_PLACE)
-                    .child(uid);
-
-            DatabaseReference pushRef = placeRef.push();
-            String pushId = pushRef.getKey();
-            mPlace.setPushId(pushId);
-            pushRef.setValue(mPlace);
-
-            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-        }
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 
     @Override
@@ -208,9 +178,42 @@ public class PlaceDetailFragment extends Fragment implements View.OnClickListene
         ref.setValue(imageEncoded);
     }
 
-    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
-        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
+    @Override
+    public void onClick(View v) {
+        if (v == mWebsiteLabel) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mPlace.getWebsite()));
+            startActivity(webIntent);
+        }
+        if (v == mPhoneLabel) {
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
+                    Uri.parse("tel:" + mPlace.getPhone()));
+            startActivity(phoneIntent);
+        }
+        if (v == mAddressLabel) {
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("geo:" + mPlace.getLatitude()
+                            + "," + mPlace.getLongitude()
+                            + "?q=(" + mPlace.getName() + ")"));
+            startActivity(mapIntent);
+        }
+        if (v == mSavePlaceButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            DatabaseReference placeRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_PLACE)
+                    .child(uid);
+
+            DatabaseReference pushRef = placeRef.push();
+            String pushId = pushRef.getKey();
+            mPlace.setPushId(pushId);
+            pushRef.setValue(mPlace);
+
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
 }
