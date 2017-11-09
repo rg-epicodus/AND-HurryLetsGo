@@ -15,15 +15,17 @@ import java.util.ArrayList;
 
 public class PlacePagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Place> mPlaces;
+    private String mSource;
 
-    public PlacePagerAdapter(FragmentManager fm, ArrayList<Place> place) {
+    public PlacePagerAdapter(FragmentManager fm, ArrayList<Place> places, String source) {
         super(fm);
-        mPlaces = place;
+        mPlaces = places;
+        mSource = source;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return PlaceDetailFragment.newInstance(mPlaces.get(position));
+        return PlaceDetailFragment.newInstance(mPlaces, position, mSource);
     }
 
     @Override

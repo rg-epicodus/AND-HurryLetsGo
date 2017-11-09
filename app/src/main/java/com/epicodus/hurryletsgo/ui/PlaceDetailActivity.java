@@ -4,6 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.epicodus.hurryletsgo.Constants;
 import com.epicodus.hurryletsgo.R;
 import com.epicodus.hurryletsgo.adapters.PlacePagerAdapter;
 import com.epicodus.hurryletsgo.models.Place;
@@ -19,6 +20,8 @@ public class PlaceDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
     private PlacePagerAdapter adapterViewPager;
     ArrayList<Place> mPlaces = new ArrayList<>();
+    private String mSource;
+
 
 
     @Override
@@ -27,11 +30,11 @@ public class PlaceDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_place_detail);
         ButterKnife.bind(this);
 
-        mPlaces = Parcels.unwrap(getIntent().getParcelableExtra("places"));
+        mPlaces = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_PLACE));
+        mSource = getIntent().getStringExtra(Constants.KEY_SOURCE);
+        int startingPosition = getIntent().getIntExtra(Constants.EXTRA_KEY_POSITION, 0);
 
-        int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
-
-        adapterViewPager = new PlacePagerAdapter(getSupportFragmentManager(), mPlaces);
+        adapterViewPager = new PlacePagerAdapter(getSupportFragmentManager(), mPlaces, mSource);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }
