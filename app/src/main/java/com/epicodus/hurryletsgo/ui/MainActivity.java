@@ -35,8 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
         mAppNameTextView.setTypeface(ostrichFont);
+
         mFindDrinksButton.setOnClickListener(this);
         mFindFoodButton.setOnClickListener(this);
         mFindEntertainmentButton.setOnClickListener(this);

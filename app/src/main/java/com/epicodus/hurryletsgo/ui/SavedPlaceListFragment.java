@@ -29,10 +29,10 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class SavedPlaceListFragment extends Fragment implements OnStartDragListener {
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+
     private FirebasePlaceListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
-
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
     public SavedPlaceListFragment() {
         // Required empty public constructor

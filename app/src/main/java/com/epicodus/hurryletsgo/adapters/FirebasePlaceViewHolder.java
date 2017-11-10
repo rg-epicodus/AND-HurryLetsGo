@@ -60,13 +60,16 @@ public class FirebasePlaceViewHolder extends RecyclerView.ViewHolder implements 
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mPlaceImageView);
-            mNameTextView.setText(place.getName());
-            mCategoryTextView.setText(place.getCategories().get(0));
-            mRatingTextView.setText("Rating: " + place.getRating() + "/5");
         }
+
         mNameTextView.setText(place.getName());
         mCategoryTextView.setText(place.getCategories().get(0));
         mRatingTextView.setText("Rating: " + place.getRating() + "/5");
+    }
+
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 
     @Override
@@ -83,11 +86,6 @@ public class FirebasePlaceViewHolder extends RecyclerView.ViewHolder implements 
                 R.animator.drag_scale_off);
         set.setTarget(itemView);
         set.start();
-    }
-
-    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
-        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 
 

@@ -86,12 +86,8 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
                 createDetailFragment(0);
             }
-            itemView.setOnClickListener(this);
 
-            mOrientation = itemView.getResources().getConfiguration().orientation;
-            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-                createDetailFragment(0);
-            }
+            itemView.setOnClickListener(this);
         }
 
         public void bindPlace(Place place) {
@@ -107,26 +103,29 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
             mRatingTextView.setText("Rating: " + place.getRating() + "/5");
         }
 
-        @Override
-        public void onClick(View v) {
-            int itemPosition = getLayoutPosition();
-            mPlaceSelectedListener.onPlaceSelected(itemPosition, mPlaces, Constants.SOURCE_FIND);
-            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-                createDetailFragment(itemPosition);
-        } else {
-            Intent intent = new Intent(mContext, PlaceDetailActivity.class);
-            intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
-            intent.putExtra(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
-            intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
-            mContext.startActivity(intent);
-        }
-    }
         private void createDetailFragment(int position) {
             PlaceDetailFragment detailFragment = PlaceDetailFragment.newInstance(mPlaces, position, Constants.SOURCE_FIND);
             FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.placeDetailContainer, detailFragment);
             ft.commit();
         }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+
+            mPlaceSelectedListener.onPlaceSelected(itemPosition, mPlaces, Constants.SOURCE_FIND);
+
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(itemPosition);
+            } else {
+                Intent intent = new Intent(mContext, PlaceDetailActivity.class);
+                intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                intent.putExtra(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
+                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
+                mContext.startActivity(intent);
+        }
+    }
 
     }
 

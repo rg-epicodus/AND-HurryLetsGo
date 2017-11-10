@@ -44,6 +44,7 @@ import butterknife.ButterKnife;
 public class PlaceDetailFragment extends Fragment implements View.OnClickListener{
     private static final int MAX_WIDTH = 400;
     private static final int MAX_HEIGHT = 300;
+    private static final int REQUEST_IMAGE_CAPTURE = 111;
 
     @Bind(R.id.placeImageView) ImageView mImageLabel;
     @Bind(R.id.placeNameTextView) TextView mNameLabel;
@@ -58,7 +59,6 @@ public class PlaceDetailFragment extends Fragment implements View.OnClickListene
     private ArrayList<Place> mPlaces;
     private int mPosition;
     private String mSource;
-    private static final int REQUEST_IMAGE_CAPTURE = 111;
 
     public static PlaceDetailFragment newInstance(ArrayList<Place> places, Integer position, String source) {
         PlaceDetailFragment placeDetailFragment = new PlaceDetailFragment();
@@ -79,7 +79,8 @@ public class PlaceDetailFragment extends Fragment implements View.OnClickListene
         mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
         mPlace = mPlaces.get(mPosition);
         mSource = getArguments().getString(Constants.KEY_SOURCE);
-        setHasOptionsMenu(true);    }
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

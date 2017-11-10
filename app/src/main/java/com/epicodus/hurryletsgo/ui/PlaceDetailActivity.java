@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 
 public class PlaceDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
+
     private PlacePagerAdapter adapterViewPager;
     ArrayList<Place> mPlaces = new ArrayList<>();
     private String mSource;
@@ -31,8 +32,8 @@ public class PlaceDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mPlaces = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_PLACE));
-        mSource = getIntent().getStringExtra(Constants.KEY_SOURCE);
         int startingPosition = getIntent().getIntExtra(Constants.EXTRA_KEY_POSITION, 0);
+        mSource = getIntent().getStringExtra(Constants.KEY_SOURCE);
 
         adapterViewPager = new PlacePagerAdapter(getSupportFragmentManager(), mPlaces, mSource);
         mViewPager.setAdapter(adapterViewPager);

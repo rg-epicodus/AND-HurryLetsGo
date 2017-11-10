@@ -21,6 +21,7 @@ import com.epicodus.hurryletsgo.R;
 import com.epicodus.hurryletsgo.adapters.PlaceListAdapter;
 import com.epicodus.hurryletsgo.models.Place;
 import com.epicodus.hurryletsgo.services.APIService;
+import com.epicodus.hurryletsgo.util.OnPlaceSelectedListener;
 
 import org.parceler.Parcels;
 
@@ -33,7 +34,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class PlaceListActivity extends AppCompatActivity {
+public class PlaceListActivity extends AppCompatActivity implements OnPlaceSelectedListener {
     private Integer mPosition;
     ArrayList<Place> mPlaces;
     String mSource;
@@ -66,6 +67,25 @@ public class PlaceListActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (mPosition != null && mPlaces != null) {
+            outState.putInt(Constants.EXTRA_KEY_POSITION, mPosition);
+            outState.putParcelable(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
+            outState.putString(Constants.KEY_SOURCE, mSource);
+        }
+
+    }
+
+    @Override
+    public void onPlaceSelected(Integer position, ArrayList<Place> places, String source) {
+        mPosition = position;
+        mPlaces = places;
+        mSource = source;
     }
 
 

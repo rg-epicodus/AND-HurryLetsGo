@@ -3,13 +3,14 @@
     <string name="find_drinks">Drinks</string>
     <string name="find_entertainment">Entertainment</string>
     <string name="find_food">Food</string>
-    <string name="saved_places">Saved Places</string>
+    <string name="saved_places">Shared Places</string>
     <string name="greeting">Hurry Lets Go</string>
     <string name="greetingDrinks">Find Drinks Activity</string>
     <string name="greetingFood">Find Food Activity</string>
     <string name="greetingEntertainment">Find Entertainment Activity</string>
-    <string name="greetingSavedPlaces">Saved Places Activity</string>
+    <string name="greetingSavedPlaces">Shared Places Activity</string>
     <string name="greetingPlaceList">Place List Activity</string>
+    <string name="addMember">Add Member</string>
     <string name="greetingSubText">an app to help people with no time find something to do right now</string>
     <string name="submit">Submit</string>
 

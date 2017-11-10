@@ -66,6 +66,27 @@
         tools:layout_constraintTop_creator="1" />
 
     <Button
+        android:id="@+id/addMemberButton"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="326dp"
+        android:background="@color/primary"
+        android:text="@string/addMember"
+        android:textColor="@color/colorTextIcons"
+        android:visibility="visible"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+    <Button
         android:id="@+id/findFoodButton"
         android:layout_width="110dp"
         android:layout_height="50dp"

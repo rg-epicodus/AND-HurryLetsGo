@@ -33,11 +33,11 @@ import java.util.Collections;
  */
 
 public class FirebasePlaceListAdapter extends FirebaseRecyclerAdapter<Place, FirebasePlaceViewHolder> implements ItemTouchHelperAdapter {
-    private ChildEventListener mChildEventListener;
-    private ArrayList<Place> mPlaces = new ArrayList<>();
     private DatabaseReference mRef;
     private OnStartDragListener mOnStartDragListener;
+    private ChildEventListener mChildEventListener;
     private Context mContext;
+    private ArrayList<Place> mPlaces = new ArrayList<>();
     private int mOrientation;
 
     public FirebasePlaceListAdapter(Class<Place> modelClass, int modelLayout,
@@ -81,10 +81,12 @@ public class FirebasePlaceListAdapter extends FirebaseRecyclerAdapter<Place, Fir
     @Override
     protected void populateViewHolder(final FirebasePlaceViewHolder viewHolder, Place model, int position) {
         viewHolder.bindPlace(model);
+
         mOrientation = viewHolder.itemView.getResources().getConfiguration().orientation;
         if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             createDetailFragment(0);
         }
+
         viewHolder.mPlaceImageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
