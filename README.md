@@ -27,7 +27,7 @@ Table of contents
 * Clone the repo
 * Open in Android Studio
 * Start Virtual Android Device
-* Run App and ue on Emulator
+* Run App and view on Emulator
 
 
 ## Specifications
@@ -37,8 +37,8 @@ Table of contents
 | User inputs zipcode and gets list of locations for drinks nearby |  97222 | Betty Sue's  |
 | User inputs zipcode and gets list of locations for food and drinks nearby | 97222 | Claim Jumper  |
 | User inputs zipcode and gets list of locations for entertainment nearby | 97222 | Phantom of the Opera  |
-| User defines radius to give to search locations | 5 miles | all results in 5 miles returned per type selected |
-| User can save locations to view later | save location | location save in "saved locations" |
+| TODO: User defines radius to give to search locations | 5 miles | all results in 5 miles returned per type selected |
+| TODO: User can save locations to view later | save location | location save in "saved locations" |
 | User can login with credentials to view saved data | login credentials | welcome user! |
 
 
