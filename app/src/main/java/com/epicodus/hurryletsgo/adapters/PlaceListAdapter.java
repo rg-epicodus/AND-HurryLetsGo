@@ -27,10 +27,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by Guest on 11/6/17.
- */
-
 public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.PlaceViewHolder> {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
@@ -61,7 +57,6 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
     public int getItemCount() {
         return mPlaces.size();
     }
-
 
     public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.placeImageView) ImageView mPlaceImageView;
@@ -114,7 +109,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
 
-            mPlaceSelectedListener.onPlaceSelected(itemPosition, mPlaces, Constants.SOURCE_FIND);
+            mPlaceSelectedListener.onPlaceSelected(itemPosition, mPlaces);
 
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(itemPosition);
@@ -122,7 +117,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
                 Intent intent = new Intent(mContext, PlaceDetailActivity.class);
                 intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
                 intent.putExtra(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
-                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
+//                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
                 mContext.startActivity(intent);
         }
     }

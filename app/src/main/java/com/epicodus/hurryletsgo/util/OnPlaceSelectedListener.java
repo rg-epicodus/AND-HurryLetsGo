@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 
 public interface OnPlaceSelectedListener {
-    public void onPlaceSelected(Integer position, ArrayList<Place> places, String source);
+    public void onPlaceSelected(Integer position, ArrayList<Place> places);
 }

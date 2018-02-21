@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "117250266608-bvjnnmnvg1q9hdo4lk6tledk5gaofj9a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.hurryletsgo",
+            "certificate_hash": "d50fc6ae43fe0c23e643ed00e99328f253196ec7"
+          }
+        },
+        {
           "client_id": "117250266608-ph90cm5pi5dieqgd17t9pfartv0mrbeg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

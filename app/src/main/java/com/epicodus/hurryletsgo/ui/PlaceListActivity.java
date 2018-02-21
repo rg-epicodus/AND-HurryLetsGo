@@ -37,7 +37,7 @@ import okhttp3.Response;
 public class PlaceListActivity extends AppCompatActivity implements OnPlaceSelectedListener {
     private Integer mPosition;
     ArrayList<Place> mPlaces;
-    String mSource;
+//    String mSource;
 
 //    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private PlaceListAdapter mAdapter;
@@ -53,13 +53,13 @@ public class PlaceListActivity extends AppCompatActivity implements OnPlaceSelec
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 mPosition = savedInstanceState.getInt(Constants.EXTRA_KEY_POSITION);
                 mPlaces = Parcels.unwrap(savedInstanceState.getParcelable(Constants.EXTRA_KEY_PLACE));
-                mSource = savedInstanceState.getString(Constants.KEY_SOURCE);
+//                mSource = savedInstanceState.getString(Constants.KEY_SOURCE);
 
                 if (mPosition != null && mPlaces != null) {
                     Intent intent = new Intent(this, PlaceDetailActivity.class);
                     intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition);
                     intent.putExtra(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
-                    intent.putExtra(Constants.KEY_SOURCE, mSource);
+//                    intent.putExtra(Constants.KEY_SOURCE, mSource);
                     startActivity(intent);
                 }
 
@@ -76,16 +76,16 @@ public class PlaceListActivity extends AppCompatActivity implements OnPlaceSelec
         if (mPosition != null && mPlaces != null) {
             outState.putInt(Constants.EXTRA_KEY_POSITION, mPosition);
             outState.putParcelable(Constants.EXTRA_KEY_PLACE, Parcels.wrap(mPlaces));
-            outState.putString(Constants.KEY_SOURCE, mSource);
+//            outState.putString(Constants.KEY_SOURCE, mSource);
         }
 
     }
 
     @Override
-    public void onPlaceSelected(Integer position, ArrayList<Place> places, String source) {
+    public void onPlaceSelected(Integer position, ArrayList<Place> places) {
         mPosition = position;
         mPlaces = places;
-        mSource = source;
+//        mSource = source;
     }
 
 
